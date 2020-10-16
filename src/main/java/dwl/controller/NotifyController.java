@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class NotifyController {
 
     @GetMapping("/notify")
-    public Object wxNotify(){
-        return "success";
+    public Object wxNotify(String signature){
+        return signature;
     }
 }
