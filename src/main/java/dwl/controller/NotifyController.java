@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class NotifyController {
 
     @GetMapping("/notify")
-    public Object wxNotify( @RequestBody String requestBody,
-                            @RequestParam("signature") String signature,
-                            @RequestParam("timestamp") String timestamp,
-                            @RequestParam("nonce") String nonce,
-                            @RequestParam("openid") String openid,
+    public Object wxNotify( @RequestBody(required = false) String requestBody,
+                            @RequestParam(value = "signature",required = false) String signature,
+                            @RequestParam(value = "timestamp",required = false) String timestamp,
+                            @RequestParam(value = "nonce",required = false) String nonce,
+                            @RequestParam(value = "openid",required = false) String openid,
                             @RequestParam(name = "encrypt_type", required = false) String encType,
                             @RequestParam(name = "msg_signature", required = false) String msgSignature,
-                            @RequestParam String echostr){
+                            @RequestParam(value = "echostr",required = false) String echostr){
 
         log.info("\n接收微信请求：[openid=[{}], [signature=[{}], encType=[{}], msgSignature=[{}],"
                         + " timestamp=[{}], nonce=[{}], requestBody=[\n{},echostr=[{}]\n] ",
