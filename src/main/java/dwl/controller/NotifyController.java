@@ -28,6 +28,6 @@ public class NotifyController {
                         + " timestamp=[{}], nonce=[{}], requestBody=[\n{},echostr=[{}]\n] ",
                 openid, signature, encType, msgSignature, timestamp, nonce, requestBody,echostr);
 
-        return "";
+        return echostr;
     }
 }

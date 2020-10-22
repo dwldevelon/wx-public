@@ -1,2 +1,5 @@
 server:
   port: 8090
+app:
+  appSecret: 2db8f546a503d11ff59b25f2d6eb7eba
+  appId: wx80b6deccdf5913cb
