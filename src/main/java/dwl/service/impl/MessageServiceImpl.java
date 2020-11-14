@@ -1,7 +1,7 @@
 package dwl.service.impl;
 
-import dwl.model.msg.req.TextMessage;
-import dwl.model.msg.resp.TextRespMessage;
+import dwl.model.wxmsg.req.TextMessage;
+import dwl.model.wxmsg.resp.TextRespMessage;
 import dwl.service.MessageService;
 import dwl.utils.ParseUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -21,12 +21,9 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public String newMessageRequest(String requestBody) {
-        log.error("测试error日志{}", 22);
-        log.info("receive message : {}",requestBody);
         try {
             TextMessage textMessage = ParseUtil.xmlToBean(requestBody, TextMessage.class);
-            log.info("receive message : {}",textMessage);
-            // 收到
+            log.info("接收到消息:{}",textMessage.getContent());
             TextRespMessage respMessage = new TextRespMessage();
             respMessage.setContent("遇见你真好，显示是："+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             respMessage.setToUserName(textMessage.getFromUserName());

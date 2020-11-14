@@ -1,6 +1,6 @@
 package dwl;
 
-import dwl.model.msg.req.TextMessage;
+import dwl.model.wxmsg.req.TextMessage;
 import dwl.utils.ParseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
