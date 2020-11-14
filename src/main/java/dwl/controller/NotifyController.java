@@ -1,10 +1,10 @@
 package dwl.controller;
 
+import dwl.service.MessageService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @author wenlong.ding
@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Slf4j
 public class NotifyController {
+
+    @Resource
+    private MessageService messageService;
 
     @GetMapping("/notify")
     public Object wxNotify( @RequestBody(required = false) String requestBody,
@@ -29,5 +32,19 @@ public class NotifyController {
                 openid, signature, encType, msgSignature, timestamp, nonce, requestBody,echostr);
 
         return echostr;
+    }
+    @PostMapping("/notify")
+    public Object wxPostNotify( @RequestBody(required = false) String requestBody,
+                            @RequestParam(value = "signature",required = false) String signature,
+                            @RequestParam(value = "timestamp",required = false) String timestamp,
+                            @RequestParam(value = "nonce",required = false) String nonce,
+                            @RequestParam(value = "openid",required = false) String openid,
+                            @RequestParam(name = "encrypt_type", required = false) String encType,
+                            @RequestParam(name = "msg_signature", required = false) String msgSignature,
+                            @RequestParam(value = "echostr",required = false) String echostr){
+        log.info("\n接收微信请求：[openid=[{}], [signature=[{}], encType=[{}], msgSignature=[{}],"
+                        + " timestamp=[{}], nonce=[{}], requestBody=[\n{},echostr=[{}]\n] ",
+                openid, signature, encType, msgSignature, timestamp, nonce, requestBody,echostr);
+        return messageService.newMessageRequest(requestBody);
     }
 }
