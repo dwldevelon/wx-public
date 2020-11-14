@@ -1,4 +1,4 @@
-package dwl.model.msg;
+package dwl.model.msg.resp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dwl.constant.WxConstant;
@@ -6,11 +6,21 @@ import lombok.Data;
 
 /**
  * @author wenlong.ding
- * @date 2020/10/22 20:46
+ * @date 2020/11/14 15:34
  */
 @Data
-public class BaseMessage {
+public class TextRespMessage {
+    /*
 
+    <xml>
+  <ToUserName><![CDATA[toUser]]></ToUserName>
+  <FromUserName><![CDATA[fromUser]]></FromUserName>
+  <CreateTime>12345678</CreateTime>
+  <MsgType><![CDATA[text]]></MsgType>
+  <Content><![CDATA[你好]]></Content>
+</xml>
+
+     */
     @JsonProperty(WxConstant.ToUserName)
     private String toUserName;
     @JsonProperty(WxConstant.FromUserName)
@@ -19,9 +29,7 @@ public class BaseMessage {
     private long createTime;
     @JsonProperty(WxConstant.MsgType)
     private String msgType;
-    @JsonProperty(WxConstant.MsgId)
-    private long msgId;
-    @JsonProperty(WxConstant.FuncFlag)
-    private int funcFlag;
+    @JsonProperty(WxConstant.Content)
+    private String content;
 
 }
