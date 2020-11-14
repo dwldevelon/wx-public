@@ -19,7 +19,6 @@ public class TextRespMessage {
   <MsgType><![CDATA[text]]></MsgType>
   <Content><![CDATA[你好]]></Content>
 </xml>
-
      */
     @JsonProperty(WxConstant.ToUserName)
     private String toUserName;
