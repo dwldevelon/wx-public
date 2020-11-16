@@ -7,10 +7,12 @@ import lombok.Data;
  * @date 2020/11/14 17:30
  */
 @Data
-public class XiaoHua {
+public class XiaoHuaDto {
+
     private long id;
     private String hashId;
     private String content;
     private long unixtime;
     private String updatetime;
+
 }

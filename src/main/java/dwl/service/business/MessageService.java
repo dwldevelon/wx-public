@@ -1,4 +1,4 @@
-package dwl.service;
+package dwl.service.business;
 
 /**
  * @author wenlong.ding

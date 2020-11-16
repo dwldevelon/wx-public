@@ -1,4 +1,4 @@
-package dwl.service.impl;
+package dwl.service.business.impl;
 
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import dwl.model.jvhe.BaseResp;
 import dwl.model.jvhe.XiaoHuaResp;
 import dwl.properties.JvHeProperties;
-import dwl.service.JvHeService;
+import dwl.service.business.JvHeService;
 import dwl.utils.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,17 +32,15 @@ public class JvHeServiceImpl implements JvHeService{
         String url = jvHeProperties.getUrl() + jvHeProperties.getXhPath();
         url += "?";
         Map<String,String> paramMap = new HashMap<>();
-        paramMap.put("sort","asc");
+        paramMap.put("sort","desc");
         paramMap.put("page","1");
         paramMap.put("pagesize","20");
-        paramMap.put("time","1418816972");
+        paramMap.put("time",String.valueOf(System.currentTimeMillis()/1000));
         paramMap.put("key",jvHeProperties.getXhKey());
         String param = paramMap.keySet().stream().map(e -> e + "=" + paramMap.get(e)).collect(Collectors.joining("&"));
         url += param;
-
         String resp = HttpUtil.get(url, String.class);
-
-        log.info("笑话:{}",resp);
+        log.info("调用笑话接口返回:{}",resp);
         ObjectMapper objectMapper = new ObjectMapper();
         TypeFactory typeFactory = objectMapper.getTypeFactory();
         JavaType paraType = typeFactory.constructType(XiaoHuaResp.class);
@@ -50,11 +48,13 @@ public class JvHeServiceImpl implements JvHeService{
         BaseResp<XiaoHuaResp> result;
         try {
             result = objectMapper.readValue(resp, javaType);
-            return result.getResult();
+            if(result.success()) {
+                return result.getResult();
+            }
         } catch (IOException e) {
             log.error("笑话json解析异常",e);
-            return null;
         }
+        return null;
 
     }
 }

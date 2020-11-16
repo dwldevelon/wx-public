@@ -20,4 +20,6 @@ public class XiaoHuaResp {
         private long unixtime;
         private String updatetime;
     }
+
+
 }

@@ -1,14 +1,14 @@
-package dwl.service.impl;
+package dwl.service.business.impl;
 
+import dwl.model.jvhe.XiaoHuaResp;
 import dwl.model.wxmsg.req.TextMessage;
 import dwl.model.wxmsg.resp.TextRespMessage;
-import dwl.service.MessageService;
+import dwl.plugins.BeanRepository;
+import dwl.service.business.MessageService;
 import dwl.utils.ParseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -17,19 +17,26 @@ import java.util.Date;
  */
 @Slf4j
 @Service
-public class MessageServiceImpl implements MessageService {
+public class MessageServiceImpl extends BeanRepository implements MessageService {
 
     @Override
     public String newMessageRequest(String requestBody) {
         try {
             TextMessage textMessage = ParseUtil.xmlToBean(requestBody, TextMessage.class);
             log.info("接收到消息:{}",textMessage.getContent());
+
+            XiaoHuaResp xiaoHua = jvHeService.getXiaoHua();
+            xhService.save(xiaoHua);
+
+            XiaoHuaResp.Data data = xiaoHua.getData().get(0);
+
             TextRespMessage respMessage = new TextRespMessage();
-            respMessage.setContent("遇见你真好，显示是："+ LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+            respMessage.setContent(data.getContent());
             respMessage.setToUserName(textMessage.getFromUserName());
             respMessage.setFromUserName(textMessage.getToUserName());
             respMessage.setCreateTime(new Date().getTime());
             respMessage.setMsgType(textMessage.getMsgType());
+
             return ParseUtil.beanToXml(respMessage);
         } catch (Exception e) {
             log.error("消息处理异常.",e);

@@ -1,13 +1,11 @@
-package dwl.service;
+package dwl.service.business;
 
 import dwl.model.jvhe.XiaoHuaResp;
 
 /**
  * @author wenlong.ding
- * @date 2020/11/14 17:43
+ * @date 2020/11/16 9:44
  */
-public interface XiaoHuaService {
-
+public interface XHService {
     void save(XiaoHuaResp resp);
-
 }
