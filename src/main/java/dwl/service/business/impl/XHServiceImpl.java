@@ -41,8 +41,8 @@ public class XHServiceImpl extends BeanRepository implements XHService {
                     XiaoHuaDto xiaoHuaDto = new XiaoHuaDto();
                     xiaoHuaDto.setHashId(xh.getHashId());
                     xiaoHuaDto.setContent(xh.getContent());
-                    xiaoHuaDto.setUnixtime(xh.getUnixtime());
-                    xiaoHuaDto.setUpdatetime(xh.getUpdatetime());
+                    xiaoHuaDto.setUnixTime(xh.getUnixtime());
+                    xiaoHuaDto.setUpdateTime(xh.getUpdatetime());
                     return xiaoHuaDto;
                 })
                 .collect(Collectors.toList());

@@ -14,7 +14,7 @@ public class XiaoHuaDto {
     private long id;
     private String hashId;
     private String content;
-    private long unixtime;
-    private String updatetime;
+    private long unixTime;
+    private String updateTime;
 
 }
