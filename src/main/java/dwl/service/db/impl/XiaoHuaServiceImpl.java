@@ -25,7 +25,7 @@ public class XiaoHuaServiceImpl extends ServiceImpl<XiaoHuaMapper, XiaoHuaDto> i
     public List<XiaoHuaDto> findByHashIds(Collection<String> hashIds) {
         Assert.notEmpty(hashIds,"查询参数hasIds不能为空");
         QueryWrapper<XiaoHuaDto> qw = new QueryWrapper<>();
-        qw.in("hashId",hashIds);
+        qw.in("hash_id",hashIds);
         return list(qw);
     }
 }
