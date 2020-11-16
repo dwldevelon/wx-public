@@ -35,7 +35,7 @@ public class XHServiceImpl extends BeanRepository implements XHService {
                     if (exist) {
                         log.warn("笑话已存在，跳过入库，xh={}", xh);
                     }
-                    return exist;
+                    return !exist;
                 })
                 .map(xh -> {
                     XiaoHuaDto xiaoHuaDto = new XiaoHuaDto();
