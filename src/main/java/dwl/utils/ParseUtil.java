@@ -37,13 +37,13 @@ public class ParseUtil {
         }
     }
 
-    public static Map<String,Object> beanToMap(Object obj){
+    public static Map<String,String> beanToMap(Object obj){
         if(Objects.isNull(obj)){
             return Collections.emptyMap();
         }
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            MapLikeType mapLikeType = objectMapper.getTypeFactory().constructMapLikeType(Map.class, String.class, Object.class);
+            MapLikeType mapLikeType = objectMapper.getTypeFactory().constructMapLikeType(Map.class, String.class, String.class);
             return objectMapper.readValue(objectMapper.writeValueAsString(obj),mapLikeType);
         }catch (Exception e){
             return Collections.emptyMap();
@@ -67,12 +67,12 @@ public class ParseUtil {
         return result;
     }
 
-    public static String mapToXml(Map<String,Object> map){
+    public static String mapToXml(Map<String,String> map){
         Document document = DocumentHelper.createDocument();
         Element rootElement = document.addElement(WxConstant.XML_ROOT);
         map.forEach((k,v)->{
             Element element = rootElement.addElement(k);
-            element.addText(String.valueOf(v));
+            element.addText(v);
         });
 
         OutputFormat outputFormat = new OutputFormat();

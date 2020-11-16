@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
+ * 流程树
  * @author wenlong.ding
  * @date 2020/11/14 17:30
  */

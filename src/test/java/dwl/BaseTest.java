@@ -9,6 +9,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  * @date 2020/11/16 9:21
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = WxAppliction.class)
+@SpringBootTest(classes = WxApplication.class)
 public class BaseTest {
 }
