@@ -31,7 +31,7 @@ public class WxViewResolverImpl extends BeanRepository implements WxViewResolver
             log.warn("用户不存在");
             return resolve("cd 0");
         }
-        int activeFeature = userInfoDto.getActiveFeatureCode();
+        Integer activeFeature = userInfoDto.getActiveFeatureCode();
         FeatureEnum featureEnum = EnumUtil.findOne(FeatureEnum.class, activeFeature);
 
         if(Objects.nonNull(featureEnum)){
