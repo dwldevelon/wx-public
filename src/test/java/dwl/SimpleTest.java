@@ -1,7 +1,5 @@
 package dwl;
 
-import dwl.model.enums.FeatureEnum;
-import dwl.utils.EnumUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -10,10 +8,12 @@ import org.junit.Test;
  * @date 2020/11/14 14:11
  */
 @Slf4j
-public class ParseUtilTest {
+public class SimpleTest {
     @Test
     public void beanToXml(){
-        FeatureEnum one = EnumUtil.findOne(FeatureEnum.class, null);
+        String a ="cd";
+        String substring = a.substring(2);
+        System.out.println("aa:"+substring);
 
     }
 }

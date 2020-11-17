@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  */
 
 @Slf4j
-public class MyTest extends BaseTest {
+public class CtxTest extends BaseTest {
     @Resource
     JvHeService jvHeService;
     @Resource

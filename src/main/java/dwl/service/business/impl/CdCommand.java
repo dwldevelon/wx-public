@@ -6,6 +6,7 @@ import dwl.model.entity.UserInfoDto;
 import dwl.model.enums.OperateEnum;
 import dwl.plugins.BeanRepository;
 import dwl.service.business.Command;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
  * @date 2020/11/17 11:31
  */
 @Service
+@Slf4j
 public class CdCommand extends BeanRepository implements Command {
 
     @Override
@@ -25,7 +27,13 @@ public class CdCommand extends BeanRepository implements Command {
         Assert.notNull(content,"cd命名内容不能为null");
         Assert.isTrue(content.startsWith(OperateEnum.CD.getCmd()),"命令不对");
         content = content.substring(2).trim();
-        int code = Integer.parseInt(content);
+        int code = 0 ;
+        try {
+            code = Integer.parseInt(content);
+        }catch (Exception e){
+            log.warn("无法解析的cd命令参数:"+content);
+            // skip
+        }
         ProcessTreeDto ptTree = processTreeService.findByCode(code);
         code = CommonConstant.ROOT_PROCESS_TREE_CODE;
         
