@@ -28,7 +28,7 @@ public class WxViewResolverImpl extends BeanRepository implements WxViewResolver
         }
         UserInfoDto userInfoDto = CommonConstant.GLOBAL_USER_INFO.get();
         if(Objects.isNull(userInfoDto)){
-            log.error("用户不存在");
+            log.warn("用户不存在");
             return resolve("cd 0");
         }
         int activeFeature = userInfoDto.getActiveFeatureCode();

@@ -13,8 +13,7 @@ import org.junit.Test;
 public class ParseUtilTest {
     @Test
     public void beanToXml(){
-        FeatureEnum one = EnumUtil.findOne(FeatureEnum.class, 1);
-        System.out.println(one);
+        FeatureEnum one = EnumUtil.findOne(FeatureEnum.class, null);
 
     }
 }

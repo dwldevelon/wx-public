@@ -43,6 +43,11 @@ public class CdCommand extends BeanRepository implements Command {
         }
 
         List<ProcessTreeDto> ptTreeDtoList = processTreeService.findToRootByCode(code);
-        return ptTreeDtoList.stream().map(e->String.format("%s[%s]",e.getCode(),e.getName())).collect(Collectors.joining("/","/",""));
+        String result = ptTreeDtoList.stream().map(e->String.format("%s[%s]",e.getCode(),e.getName())).collect(Collectors.joining("/","/",""));
+//        result += "\r\n";
+        List<ProcessTreeDto> pts = processTreeService.findByParentId(ptTree.getId());
+        result += pts.stream().map(e->String.format("-%s[%s]",e.getCode(),e.getName())).collect(Collectors.joining("\r\n","\r\n","\r\n"));
+        result += ptTree.getDescription();
+        return result;
     }
 }

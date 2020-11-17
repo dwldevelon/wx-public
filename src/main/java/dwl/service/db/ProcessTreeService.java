@@ -18,4 +18,6 @@ public interface ProcessTreeService extends IService<ProcessTreeDto> {
      */
     List<ProcessTreeDto> findToRootByCode(int code);
 
+    List<ProcessTreeDto> findByParentId(Long parentIds);
+
 }

@@ -3,6 +3,7 @@ package dwl;
 import dwl.model.jvhe.XiaoHuaResp;
 import dwl.service.business.JvHeService;
 import dwl.service.business.XHService;
+import dwl.service.business.impl.WxViewResolverImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -19,10 +20,13 @@ public class MyTest extends BaseTest {
     JvHeService jvHeService;
     @Resource
     XHService xiaoHuaService;
+    @Resource
+    WxViewResolverImpl wxViewResolver;
+
     @Test
     public void userMapperTest(){
-//        XiaoHuaResp xiaoHua = jvHeService.getXiaoHua();
-//        log.info("xiaohua:{}", xiaoHua);
+        String resolve = wxViewResolver.resolve("2");
+        System.out.println(resolve);
     }
 
     @Test

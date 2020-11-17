@@ -7,10 +7,7 @@ import dwl.model.entity.ProcessTreeDto;
 import dwl.service.db.ProcessTreeService;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author wenlong.ding
@@ -44,5 +41,12 @@ public class ProcessTreeServiceImpl extends ServiceImpl<ProcessTreeMapper, Proce
         }
         Collections.reverse(result);
         return result;
+    }
+
+    @Override
+    public List<ProcessTreeDto> findByParentId(Long parentIds) {
+        QueryWrapper<ProcessTreeDto> qw = new QueryWrapper<>();
+        qw.eq("parent_id",parentIds);
+        return list(qw);
     }
 }

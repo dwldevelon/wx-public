@@ -17,7 +17,7 @@ public class EnumUtil {
     private EnumUtil(){throw new Error("not support");}
 
     @SuppressWarnings("all")
-    public static <E extends Enum<E> & SuperEnum> E findOne(Class<E> enumClass, int searchFiled){
+    public static <E extends Enum<E> & SuperEnum> E findOne(Class<E> enumClass, Integer searchFiled){
         return findOne(enumClass, e -> e.getCode(),searchFiled);
     }
 
