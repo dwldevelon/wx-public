@@ -23,7 +23,7 @@ public class ProcessTreeDto {
     /**
      * 说明
      */
-    private String desc;
+    private String description;
     /**
      * 功能
      */
