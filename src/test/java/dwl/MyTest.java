@@ -21,8 +21,8 @@ public class MyTest extends BaseTest {
     XHService xiaoHuaService;
     @Test
     public void userMapperTest(){
-        XiaoHuaResp xiaoHua = jvHeService.getXiaoHua();
-        log.info("xiaohua:{}", xiaoHua);
+//        XiaoHuaResp xiaoHua = jvHeService.getXiaoHua();
+//        log.info("xiaohua:{}", xiaoHua);
     }
 
     @Test

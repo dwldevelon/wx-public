@@ -2,7 +2,7 @@ package dwl.utils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.MapLikeType;
-import dwl.constant.WxConstant;
+import dwl.constant.wx.WxConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.TypeFactory;
 import dwl.model.jvhe.BaseResp;
+import dwl.model.jvhe.XiaoHuaReq;
 import dwl.model.jvhe.XiaoHuaResp;
 import dwl.properties.JvHeProperties;
 import dwl.service.business.JvHeService;
@@ -13,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -28,15 +28,10 @@ public class JvHeServiceImpl implements JvHeService{
     @Resource
     JvHeProperties jvHeProperties;
     @Override
-    public XiaoHuaResp getXiaoHua() {
+    public XiaoHuaResp getXiaoHua(XiaoHuaReq req) {
         String url = jvHeProperties.getUrl() + jvHeProperties.getXhPath();
         url += "?";
-        Map<String,String> paramMap = new HashMap<>();
-        paramMap.put("sort","desc");
-        paramMap.put("page","1");
-        paramMap.put("pagesize","20");
-        paramMap.put("time",String.valueOf(System.currentTimeMillis()/1000));
-        paramMap.put("key",jvHeProperties.getXhKey());
+        Map<String,String> paramMap = req.toMap();
         String param = paramMap.keySet().stream().map(e -> e + "=" + paramMap.get(e)).collect(Collectors.joining("&"));
         url += param;
         String resp = HttpUtil.get(url, String.class);

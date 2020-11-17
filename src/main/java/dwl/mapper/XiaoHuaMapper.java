@@ -9,4 +9,5 @@ import dwl.model.entity.XiaoHuaDto;
  * @date 2020/11/14 17:33
  */
 public interface XiaoHuaMapper extends BaseMapper<XiaoHuaDto> {
+    XiaoHuaDto findOneByRandom();
 }

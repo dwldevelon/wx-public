@@ -1,10 +1,8 @@
 package dwl.controller;
 
-import dwl.service.business.MessageService;
+import dwl.plugins.BeanRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
 
 /**
  * @author wenlong.ding
@@ -12,10 +10,8 @@ import javax.annotation.Resource;
  */
 @RestController
 @Slf4j
-public class NotifyController {
+public class NotifyController extends BeanRepository {
 
-    @Resource
-    private MessageService messageService;
 
     @GetMapping("/notify")
     public Object wxNotify( @RequestBody(required = false) String requestBody,
@@ -35,6 +31,6 @@ public class NotifyController {
     }
     @PostMapping("/notify")
     public Object wxPostNotify( @RequestBody(required = false) String requestBody){
-        return messageService.newMessageRequest(requestBody);
+        return msgGateway.handle(requestBody);
     }
 }

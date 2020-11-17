@@ -1,5 +1,6 @@
 package dwl.model.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 /**
@@ -7,13 +8,14 @@ import lombok.Data;
  * @date 2020/11/16 14:53
  */
 @Data
+@TableName("process__tree")
 public class ProcessTreeDto {
-    private long id;
-    private long parentId;
+    private Long id;
+    private Long parentId;
     /**
      * 流程码
      */
-    private int code;
+    private Integer code;
     /**
      * 流程名称
      */
@@ -22,4 +24,8 @@ public class ProcessTreeDto {
      * 说明
      */
     private String desc;
+    /**
+     * 功能
+     */
+    private Integer featureCode;
 }

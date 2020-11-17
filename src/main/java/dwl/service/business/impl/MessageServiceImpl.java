@@ -1,6 +1,5 @@
 package dwl.service.business.impl;
 
-import dwl.model.jvhe.XiaoHuaResp;
 import dwl.model.wxmsg.req.TextMessage;
 import dwl.model.wxmsg.resp.TextRespMessage;
 import dwl.plugins.BeanRepository;
@@ -17,6 +16,7 @@ import java.util.Date;
  */
 @Slf4j
 @Service
+@Deprecated
 public class MessageServiceImpl extends BeanRepository implements MessageService {
 
     @Override
@@ -25,13 +25,13 @@ public class MessageServiceImpl extends BeanRepository implements MessageService
             TextMessage textMessage = ParseUtil.xmlToBean(requestBody, TextMessage.class);
             log.info("接收到消息:{}",textMessage.getContent());
 
-            XiaoHuaResp xiaoHua = jvHeService.getXiaoHua();
-            xhService.save(xiaoHua);
+//            XiaoHuaResp xiaoHua = jvHeService.getXiaoHua();
+//            xhService.save(xiaoHua);
 
-            XiaoHuaResp.Data data = xiaoHua.getData().get(0);
+//            XiaoHuaResp.Data data = xiaoHua.getData().get(0);
 
             TextRespMessage respMessage = new TextRespMessage();
-            respMessage.setContent(data.getContent());
+//            respMessage.setContent(data.getContent());
             respMessage.setToUserName(textMessage.getFromUserName());
             respMessage.setFromUserName(textMessage.getToUserName());
             respMessage.setCreateTime(new Date().getTime());

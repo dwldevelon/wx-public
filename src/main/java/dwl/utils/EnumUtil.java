@@ -1,5 +1,6 @@
 package dwl.utils;
 
+import dwl.model.enums.SuperEnum;
 import org.springframework.util.Assert;
 
 import java.util.Arrays;
@@ -14,6 +15,10 @@ import java.util.function.Function;
 public class EnumUtil {
 
     private EnumUtil(){throw new Error("not support");}
+
+    public static <E extends Enum<E> & SuperEnum> E findOne(Class<E> enumClass,int searchFiled){
+        return findOne(enumClass, SuperEnum::getCode,searchFiled);
+    }
 
     public static <T,E extends Enum<E>> E findOne(Class<E> enumClass, Function<E,T> getEnumFieldFunction ,T searchFiled){
         return findOne(enumClass,getEnumFieldFunction,searchFiled,null);

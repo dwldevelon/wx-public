@@ -2,4 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="dwl.mapper.XiaoHuaMapper">
 
+    <select id="findOneByRandom" resultType="dwl.model.entity.XiaoHuaDto">
+        select *
+        from xiao_hua
+        WHERE id >= ((SELECT MAX(id) FROM xiao_hua) - (SELECT MIN(id) FROM xiao_hua)) * RAND() +
+                    (SELECT MIN(id) FROM xiao_hua)
+        LIMIT 1
+    </select>
 </mapper>

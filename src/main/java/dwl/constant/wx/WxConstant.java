@@ -1,4 +1,4 @@
-package dwl.constant;
+package dwl.constant.wx;
 
 /**
  * @author wenlong.ding
@@ -35,5 +35,9 @@ public interface WxConstant {
     String Content = "Content";
 
     String XML_ROOT = "xml";
+
+    String DEFAULT_RETURN = "";
+
+    String DEFAULT_RESP_CONTENT = "系统识别不了你的请求，请多喝热水！";
 
 }

@@ -1,5 +1,6 @@
 package dwl.service.business;
 
+import dwl.model.jvhe.XiaoHuaReq;
 import dwl.model.jvhe.XiaoHuaResp;
 
 /**
@@ -8,6 +9,6 @@ import dwl.model.jvhe.XiaoHuaResp;
  */
 public interface JvHeService {
 
-    XiaoHuaResp getXiaoHua();
+    XiaoHuaResp getXiaoHua(XiaoHuaReq req);
 
 }
