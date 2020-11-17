@@ -8,7 +8,7 @@ import lombok.Data;
  * @date 2020/11/16 14:53
  */
 @Data
-@TableName("process__tree")
+@TableName("process_tree")
 public class ProcessTreeDto {
     private Long id;
     private Long parentId;
