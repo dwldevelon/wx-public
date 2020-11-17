@@ -11,3 +11,6 @@ spring:
     url: jdbc:mysql://203.195.155.161:3306/wx?useUnicode=true&useSSL=false&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: 123456x
+
+mybatis-plus:
+  mapper-locations: classpath:dwl/mapper/xml/*.xml

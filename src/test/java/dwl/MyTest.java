@@ -1,5 +1,7 @@
 package dwl;
 
+import dwl.mapper.XiaoHuaMapper;
+import dwl.model.entity.XiaoHuaDto;
 import dwl.model.jvhe.XiaoHuaResp;
 import dwl.service.business.JvHeService;
 import dwl.service.business.XHService;
@@ -23,10 +25,13 @@ public class MyTest extends BaseTest {
     @Resource
     WxViewResolverImpl wxViewResolver;
 
+    @Resource
+    XiaoHuaMapper xiaoHuaMapper;
+
     @Test
     public void userMapperTest(){
-        String resolve = wxViewResolver.resolve("2");
-        System.out.println(resolve);
+        XiaoHuaDto oneByRandom = xiaoHuaMapper.findOneByRandom();
+        System.out.println(oneByRandom);
     }
 
     @Test

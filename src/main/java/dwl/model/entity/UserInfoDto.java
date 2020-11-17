@@ -21,11 +21,11 @@ public class UserInfoDto {
     /**
      * 激活
      */
-    private int activeFeatureCode;
+    private Integer activeFeatureCode;
 
     /**
      * 当前笑话id;
      */
-    private long currXiaoHuaId;
+    private Long currXiaoHuaId;
 
 }
