@@ -16,8 +16,9 @@ public class EnumUtil {
 
     private EnumUtil(){throw new Error("not support");}
 
-    public static <E extends Enum<E> & SuperEnum> E findOne(Class<E> enumClass,int searchFiled){
-        return findOne(enumClass, SuperEnum::getCode,searchFiled);
+    @SuppressWarnings("all")
+    public static <E extends Enum<E> & SuperEnum> E findOne(Class<E> enumClass, int searchFiled){
+        return findOne(enumClass, e -> e.getCode(),searchFiled);
     }
 
     public static <T,E extends Enum<E>> E findOne(Class<E> enumClass, Function<E,T> getEnumFieldFunction ,T searchFiled){

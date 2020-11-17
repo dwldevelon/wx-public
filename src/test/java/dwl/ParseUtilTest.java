@@ -1,7 +1,7 @@
 package dwl;
 
-import dwl.model.wxmsg.req.TextMessage;
-import dwl.utils.ParseUtil;
+import dwl.model.enums.FeatureEnum;
+import dwl.utils.EnumUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -13,11 +13,8 @@ import org.junit.Test;
 public class ParseUtilTest {
     @Test
     public void beanToXml(){
-        log.info(TestConstant.XML);
-        TextMessage textMessage = ParseUtil.xmlToBean(TestConstant.XML, TextMessage.class);
-        log.info("bean:{}",textMessage);
-        String xml = ParseUtil.beanToXml(textMessage);
-        log.info("xml:{}", xml);
+        FeatureEnum one = EnumUtil.findOne(FeatureEnum.class, 1);
+        System.out.println(one);
 
     }
 }
