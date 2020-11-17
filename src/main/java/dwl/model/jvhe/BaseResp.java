@@ -23,6 +23,9 @@ public class BaseResp<T> {
 //    @JsonProperty("result")
     private T result;
 
+    @JsonProperty("resultcode")
+    private String resultCode;
+
     public boolean success(){
         boolean success = Objects.equals(error_code,"0");
         if(!success){

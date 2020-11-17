@@ -33,7 +33,7 @@ public class XHServiceImpl extends BeanRepository implements XHService {
                 .filter(xh -> {
                     boolean exist = existHashIds.contains(xh.getHashId());
                     if (exist) {
-                        log.warn("笑话已存在，跳过入库，xh={}", xh);
+                        log.warn("笑话已存在，跳过入库，hashId={}", xh.getHashId());
                     }
                     return !exist;
                 })

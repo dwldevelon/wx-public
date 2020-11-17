@@ -35,7 +35,7 @@ public class JvHeServiceImpl implements JvHeService{
         String param = paramMap.keySet().stream().map(e -> e + "=" + paramMap.get(e)).collect(Collectors.joining("&"));
         url += param;
         String resp = HttpUtil.get(url, String.class);
-        log.info("调用笑话接口返回:{}",resp);
+//        log.info("调用笑话接口返回:{}",resp);
         ObjectMapper objectMapper = new ObjectMapper();
         TypeFactory typeFactory = objectMapper.getTypeFactory();
         JavaType paraType = typeFactory.constructType(XiaoHuaResp.class);
@@ -45,6 +45,8 @@ public class JvHeServiceImpl implements JvHeService{
             result = objectMapper.readValue(resp, javaType);
             if(result.success()) {
                 return result.getResult();
+            }else {
+                log.error("笑话接口请求失败结果：{}",result);
             }
         } catch (IOException e) {
             log.error("笑话json解析异常",e);
@@ -52,4 +54,5 @@ public class JvHeServiceImpl implements JvHeService{
         return null;
 
     }
+
 }
