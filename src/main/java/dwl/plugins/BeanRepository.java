@@ -2,6 +2,8 @@ package dwl.plugins;
 
 import dwl.mapper.UserInfoMapper;
 import dwl.mapper.XiaoHuaMapper;
+import dwl.properties.JvHeProperties;
+import dwl.schedule.XHTask;
 import dwl.service.business.*;
 import dwl.service.db.ProcessTreeService;
 import dwl.service.db.UserInfoService;
@@ -21,6 +23,9 @@ public abstract class BeanRepository
 
     @Resource
     protected ApplicationContext ctx;
+
+    @Resource
+    protected JvHeProperties jvHeProperties;
 
     @Resource
     protected XiaoHuaMapper xiaoHuaMapper;
@@ -45,6 +50,8 @@ public abstract class BeanRepository
     protected MsgGateway msgGateway;
     @Resource
     protected WxViewResolver wxViewResolver;
+
+    protected XHTask xhTask;
 
 //    @Override
 //    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

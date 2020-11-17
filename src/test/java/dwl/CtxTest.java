@@ -1,11 +1,7 @@
 package dwl;
 
-import dwl.mapper.XiaoHuaMapper;
 import dwl.model.entity.XiaoHuaDto;
-import dwl.model.jvhe.XiaoHuaResp;
-import dwl.service.business.JvHeService;
-import dwl.service.business.XHService;
-import dwl.service.business.impl.WxViewResolverImpl;
+import dwl.service.db.XiaoHuaService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -19,24 +15,16 @@ import javax.annotation.Resource;
 @Slf4j
 public class CtxTest extends BaseTest {
     @Resource
-    JvHeService jvHeService;
-    @Resource
-    XHService xiaoHuaService;
-    @Resource
-    WxViewResolverImpl wxViewResolver;
+    XiaoHuaService xiaoHuaService;
 
-    @Resource
-    XiaoHuaMapper xiaoHuaMapper;
 
     @Test
     public void userMapperTest(){
-        XiaoHuaDto oneByRandom = xiaoHuaMapper.findOneByRandom();
-        System.out.println(oneByRandom);
+        XiaoHuaDto first = xiaoHuaService.findFirst();
+        System.out.println(first);
+        XiaoHuaDto last = xiaoHuaService.findLast();
+        System.out.println(last);
+
     }
 
-    @Test
-    public void test1(){
-        XiaoHuaResp xiaoHuaResp = null;
-        xiaoHuaService.save(xiaoHuaResp);
-    }
 }

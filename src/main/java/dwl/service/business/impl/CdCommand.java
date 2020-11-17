@@ -27,7 +27,7 @@ public class CdCommand extends BeanRepository implements Command {
         Assert.notNull(content,"cd命名内容不能为null");
         Assert.isTrue(content.startsWith(OperateEnum.CD.getCmd()),"命令不对");
         content = content.substring(2).trim();
-        int code = 0 ;
+        int code =  CommonConstant.ROOT_PROCESS_TREE_CODE; ;
         try {
             code = Integer.parseInt(content);
         }catch (Exception e){

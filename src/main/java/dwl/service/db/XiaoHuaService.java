@@ -14,4 +14,14 @@ public interface XiaoHuaService extends IService<XiaoHuaDto> {
 
     List<XiaoHuaDto> findByHashIds(Collection<String> hashIds);
 
+    /**
+     * 获取时间最早的笑话
+     */
+    XiaoHuaDto findFirst();
+
+    /**
+     * 获取时间最近的笑话
+     */
+    XiaoHuaDto findLast();
+
 }
