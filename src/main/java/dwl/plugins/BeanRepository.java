@@ -51,6 +51,7 @@ public abstract class BeanRepository
     @Resource
     protected WxViewResolver wxViewResolver;
 
+    @Resource
     protected XHTask xhTask;
 
 //    @Override
