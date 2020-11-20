@@ -35,9 +35,8 @@ public class CdCommand extends BeanRepository implements Command {
             // skip
         }
         ProcessTreeDto ptTree = processTreeService.findByCode(code);
-        code = CommonConstant.ROOT_PROCESS_TREE_CODE;
-        
         if(Objects.isNull(ptTree)){
+            code = CommonConstant.ROOT_PROCESS_TREE_CODE;
             ptTree = processTreeService.findByCode(code);
         }
 
