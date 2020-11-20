@@ -1,5 +1,6 @@
 package dwl;
 
+import dwl.plugins.BeanRepository;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -10,5 +11,5 @@ import org.springframework.test.context.junit4.SpringRunner;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = WxApplication.class)
-public class BaseTest {
+public class BaseTest extends BeanRepository {
 }

@@ -180,14 +180,21 @@
 
     <root level="warn">
         <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="DEBUG_FILE"/>
+<!--        <appender-ref ref="DEBUG_FILE"/>-->
         <appender-ref ref="INFO_FILE"/>
         <appender-ref ref="WARN_FILE"/>
         <appender-ref ref="ERROR_FILE"/>
     </root>
 
     <!-- 不同包，设置不同的日志级别 -->
-    <logger name="dwl" level="trace"/>
+    <logger name="dwl" level="trace">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="DEBUG_FILE"/>
+        <appender-ref ref="INFO_FILE"/>
+        <appender-ref ref="WARN_FILE"/>
+        <appender-ref ref="ERROR_FILE"/>
+    </logger>
+
 
     <!--生产环境:输出到文件-->
     <!--<springProfile name="pro">-->

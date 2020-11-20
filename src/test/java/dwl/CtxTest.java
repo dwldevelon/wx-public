@@ -1,11 +1,8 @@
 package dwl;
 
-import dwl.model.entity.XiaoHuaDto;
-import dwl.service.db.XiaoHuaService;
+import dwl.model.entity.UserInfoDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-
-import javax.annotation.Resource;
 
 /**
  * @author wenlong.ding
@@ -14,17 +11,15 @@ import javax.annotation.Resource;
 
 @Slf4j
 public class CtxTest extends BaseTest {
-    @Resource
-    XiaoHuaService xiaoHuaService;
 
 
     @Test
     public void userMapperTest(){
-        XiaoHuaDto first = xiaoHuaService.findFirst();
-        System.out.println(first);
-        XiaoHuaDto last = xiaoHuaService.findLast();
-        System.out.println(last);
-
+        UserInfoDto userInfoDto = userInfoMapper.selectById(1L);
+        log.info("{}", userInfoDto);
+        userInfoDto.setActiveFeatureCode(null);
+        int i = userInfoMapper.updateById(userInfoDto);
+        log.info("{}", i);
     }
 
 }

@@ -1,5 +1,7 @@
 package dwl.model.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldStrategy;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -21,6 +23,7 @@ public class UserInfoDto {
     /**
      * 激活
      */
+    @TableField(value = "active_feature_code",updateStrategy = FieldStrategy.IGNORED)
     private Integer activeFeatureCode;
 
     /**
