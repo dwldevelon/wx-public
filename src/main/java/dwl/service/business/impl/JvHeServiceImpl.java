@@ -45,8 +45,6 @@ public class JvHeServiceImpl implements JvHeService{
             result = objectMapper.readValue(resp, javaType);
             if(result.success()) {
                 return result.getResult();
-            }else {
-                log.error("笑话接口请求失败结果：{}",result);
             }
         } catch (IOException e) {
             log.error("笑话json解析异常",e);

@@ -1,8 +1,10 @@
 package dwl.plugins;
 
+import dwl.mapper.ProcessTreeMapper;
 import dwl.mapper.UserInfoMapper;
 import dwl.mapper.XiaoHuaMapper;
 import dwl.properties.JvHeProperties;
+import dwl.properties.WxProperties;
 import dwl.schedule.XHTask;
 import dwl.service.business.*;
 import dwl.service.db.ProcessTreeService;
@@ -18,44 +20,60 @@ import javax.annotation.Resource;
  */
 
 public abstract class BeanRepository
-//        implements ApplicationContextAware
 {
 
+    // ------------------ spring boot ---------------------
     @Resource
     protected ApplicationContext ctx;
 
+
+
+    // ----------------- properties -------------------------
     @Resource
     protected JvHeProperties jvHeProperties;
+    @Resource
+    protected WxProperties wxProperties;
 
+
+
+    // ----------------- mapper --------------------
     @Resource
     protected XiaoHuaMapper xiaoHuaMapper;
     @Resource
     protected UserInfoMapper userInfoMapper;
+    @Resource
+    protected ProcessTreeMapper processTreeMapper;
 
+
+
+    // --------------------- simple service --------------
     @Resource
     protected XiaoHuaService xiaoHuaService;
     @Resource
-    protected ProcessTreeService processTreeService;
-    @Resource
     protected UserInfoService userInfoService;
-
-
     @Resource
-    protected JvHeService jvHeService;
+    protected ProcessTreeService processTreeService;
+
+
+
+    // -------------------- business service ------------
     @Resource
     protected XHService xhService;
     @Resource
     protected PTService ptService;
+
+
+    // --------------- extend service --------------------
+    @Resource
+    protected JvHeService jvHeService;
     @Resource
     protected MsgGateway msgGateway;
     @Resource
     protected WxViewResolver wxViewResolver;
 
+
+
+    // ------------------- Scheduled -----------------------
     @Resource
     protected XHTask xhTask;
-
-//    @Override
-//    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-//        this.ctx = applicationContext;
-//    }
 }
