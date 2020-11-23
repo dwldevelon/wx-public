@@ -70,6 +70,8 @@ public abstract class BeanRepository
     protected MsgGateway msgGateway;
     @Resource
     protected WxViewResolver wxViewResolver;
+    @Resource
+    protected HeadAndTailWrapper headAndTailWrapper;
 
 
 

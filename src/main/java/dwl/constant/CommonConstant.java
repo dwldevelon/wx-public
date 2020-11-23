@@ -11,4 +11,6 @@ public interface CommonConstant {
 
     ThreadLocal<UserInfoDto> GLOBAL_USER_INFO = new ThreadLocal<>();
 
+    String RN = "\r\n";
+
 }

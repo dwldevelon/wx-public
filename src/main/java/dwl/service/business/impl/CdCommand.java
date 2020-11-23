@@ -10,7 +10,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -32,7 +31,6 @@ public class CdCommand extends BeanRepository implements Command {
             code = Integer.parseInt(content);
         }catch (Exception e){
             log.warn("无法解析的cd命令参数:"+content);
-            // skip
         }
         ProcessTreeDto ptTree = processTreeService.findByCode(code);
         if(Objects.isNull(ptTree)){
@@ -46,16 +44,10 @@ public class CdCommand extends BeanRepository implements Command {
             userInfoMapper.updateById(userInfoDto);
         }
 
-        List<ProcessTreeDto> ptTreeDtoList = processTreeService.findToRootByCode(code);
-
-        String result = ptTreeDtoList.stream().map(e->String.format("%s[%s]",e.getCode(),e.getName())).collect(Collectors.joining("/","/",""));
-
-        result += processTreeService.findByParentId(ptTree.getId())
+        String result = processTreeService.findByParentId(ptTree.getId())
                 .stream()
                 .map(e->String.format("-%s[%s]",e.getCode(),e.getName()))
-                .collect(Collectors.joining("\r\n","\r\n","\r\n"));
-
-        result += ptTree.getDescription();
-        return result;
+                .collect(Collectors.joining(CommonConstant.RN));
+        return headAndTailWrapper.wrapper(code,result);
     }
 }
