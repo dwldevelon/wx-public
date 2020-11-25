@@ -28,7 +28,7 @@ public class XiaoHuaCommand extends BeanRepository implements Command {
         if(Objects.isNull(code)){
             code = XiaoHuaFeatureEnum.RANDOM.getCode();
         }
-        XiaoHuaFeatureEnum xhFeature = EnumUtil.findOne(XiaoHuaFeatureEnum.class,code);
+        XiaoHuaFeatureEnum xhFeature = EnumUtil.findOne(XiaoHuaFeatureEnum.class,code,XiaoHuaFeatureEnum.RANDOM);
         return SpringContextUtil.getBean(xhFeature.getCommand()).exec(content);
     }
 

@@ -20,6 +20,10 @@ public class EnumUtil {
     public static <E extends Enum<E> & SuperEnum> E findOne(Class<E> enumClass, Integer searchFiled){
         return findOne(enumClass, e -> e.getCode(),searchFiled);
     }
+    @SuppressWarnings("all")
+    public static <E extends Enum<E> & SuperEnum> E findOne(Class<E> enumClass, Integer searchFiled,E defaultValue){
+        return findOne(enumClass, e -> e.getCode(),searchFiled,defaultValue);
+    }
 
     public static <T,E extends Enum<E>> E findOne(Class<E> enumClass, Function<E,T> getEnumFieldFunction ,T searchFiled){
         return findOne(enumClass,getEnumFieldFunction,searchFiled,null);
