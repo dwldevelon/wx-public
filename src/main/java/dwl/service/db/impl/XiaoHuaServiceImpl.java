@@ -61,7 +61,7 @@ public class XiaoHuaServiceImpl extends ServiceImpl<XiaoHuaMapper, XiaoHuaDto> i
         QueryWrapper<XiaoHuaDto> qw = new QueryWrapper<>();
         qw.gt("id",id);
         IPage<XiaoHuaDto> result = page(page, qw);
-        return result.getTotal() > 1 ? result.getRecords().get(0) : null;
+        return result.getTotal() > 0 ? result.getRecords().get(0) : findFirst();
     }
 
     @Override
@@ -73,6 +73,6 @@ public class XiaoHuaServiceImpl extends ServiceImpl<XiaoHuaMapper, XiaoHuaDto> i
         QueryWrapper<XiaoHuaDto> qw = new QueryWrapper<>();
         qw.lt("id",id);
         IPage<XiaoHuaDto> result = page(page, qw);
-        return result.getTotal() > 1 ? result.getRecords().get(0) : null;
+        return result.getTotal() > 0 ? result.getRecords().get(0) : findLast();
     }
 }
