@@ -12,10 +12,10 @@ import lombok.Data;
 @TableName("xiao_hua")
 public class XiaoHuaDto {
 
-    private long id;
+    private Long id;
     private String hashId;
     private String content;
-    private long unixTime;
+    private Long unixTime;
     private String updateTime;
 
 }

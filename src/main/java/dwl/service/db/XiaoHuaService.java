@@ -24,4 +24,16 @@ public interface XiaoHuaService extends IService<XiaoHuaDto> {
      */
     XiaoHuaDto findLast();
 
+    /**
+     * 查询指定id的下一个笑话
+     */
+    XiaoHuaDto findNext(Long id);
+
+    /**
+     * 查询指定id的上一个笑话
+     */
+    XiaoHuaDto findPrevious(Long id);
+
+
+
 }

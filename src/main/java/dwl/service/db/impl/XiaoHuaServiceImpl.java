@@ -1,6 +1,7 @@
 package dwl.service.db.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import dwl.mapper.XiaoHuaMapper;
@@ -12,6 +13,7 @@ import org.springframework.util.Assert;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author wenlong.ding
@@ -48,5 +50,29 @@ public class XiaoHuaServiceImpl extends ServiceImpl<XiaoHuaMapper, XiaoHuaDto> i
         QueryWrapper<XiaoHuaDto> qw = new QueryWrapper<>();
         qw.orderByDesc("unix_time");
         return page(page,qw).getRecords().get(0);
+    }
+
+    @Override
+    public XiaoHuaDto findNext(Long id) {
+        if(Objects.isNull(id)) id = 0L;
+        Page<XiaoHuaDto> page = new Page<>();
+        page.setCurrent(1);
+        page.setSize(1);
+        QueryWrapper<XiaoHuaDto> qw = new QueryWrapper<>();
+        qw.gt("id",id);
+        IPage<XiaoHuaDto> result = page(page, qw);
+        return result.getTotal() > 1 ? result.getRecords().get(0) : null;
+    }
+
+    @Override
+    public XiaoHuaDto findPrevious(Long id) {
+        if(Objects.isNull(id)) id = 0L;
+        Page<XiaoHuaDto> page = new Page<>();
+        page.setCurrent(1);
+        page.setSize(1);
+        QueryWrapper<XiaoHuaDto> qw = new QueryWrapper<>();
+        qw.lt("id",id);
+        IPage<XiaoHuaDto> result = page(page, qw);
+        return result.getTotal() > 1 ? result.getRecords().get(0) : null;
     }
 }

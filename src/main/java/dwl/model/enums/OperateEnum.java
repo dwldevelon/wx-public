@@ -1,7 +1,7 @@
 package dwl.model.enums;
 
 import dwl.service.business.Command;
-import dwl.service.business.impl.CdCommand;
+import dwl.service.business.command.CdCommand;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
