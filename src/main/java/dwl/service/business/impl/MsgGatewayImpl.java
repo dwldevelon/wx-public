@@ -1,15 +1,15 @@
 package dwl.service.business.impl;
 
-import dwl.constant.CommonConstant;
-import dwl.constant.exp.ExpObjConstant;
-import dwl.constant.exp.ExpPlanConstant;
-import dwl.constant.exp.ExpReasonConstant;
-import dwl.constant.wx.WxConstant;
-import dwl.constant.wx.WxMsgTypeConstant;
+import dwl.config.constant.CommonConstant;
+import dwl.config.constant.exp.ExpObjConstant;
+import dwl.config.constant.exp.ExpPlanConstant;
+import dwl.config.constant.exp.ExpReasonConstant;
+import dwl.config.constant.wx.WxConstant;
+import dwl.config.constant.wx.WxMsgTypeConstant;
 import dwl.model.entity.UserInfoDto;
 import dwl.model.wxmsg.req.TextMessage;
 import dwl.model.wxmsg.resp.TextRespMessage;
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import dwl.service.business.MsgGateway;
 import dwl.utils.ParseUtil;
 import lombok.extern.slf4j.Slf4j;

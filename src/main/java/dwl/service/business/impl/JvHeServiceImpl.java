@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import dwl.model.jvhe.BaseResp;
 import dwl.model.jvhe.XiaoHuaReq;
 import dwl.model.jvhe.XiaoHuaResp;
-import dwl.properties.JvHeProperties;
+import dwl.config.properties.JvHeProperties;
 import dwl.service.business.JvHeService;
 import dwl.utils.HttpUtil;
 import lombok.extern.slf4j.Slf4j;

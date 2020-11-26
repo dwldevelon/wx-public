@@ -1,6 +1,6 @@
 package dwl.service.business.impl;
 
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import dwl.service.business.PTService;
 import org.springframework.stereotype.Service;
 

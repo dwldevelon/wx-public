@@ -1,8 +1,8 @@
 package dwl.service.business.impl;
 
-import dwl.constant.CommonConstant;
+import dwl.config.constant.CommonConstant;
 import dwl.model.entity.ProcessTreeDto;
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import dwl.service.business.HeadAndTailWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

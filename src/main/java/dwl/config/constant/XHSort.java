@@ -1,4 +1,4 @@
-package dwl.constant;
+package dwl.config.constant;
 
 /**
  * 笑话请求参数sort可选类型

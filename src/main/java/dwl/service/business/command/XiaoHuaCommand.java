@@ -1,7 +1,7 @@
 package dwl.service.business.command;
 
 import dwl.model.enums.XiaoHuaFeatureEnum;
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import dwl.service.business.Command;
 import dwl.utils.EnumUtil;
 import dwl.utils.SpringContextUtil;

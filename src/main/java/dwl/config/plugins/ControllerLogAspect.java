@@ -1,4 +1,4 @@
-package dwl.plugins;
+package dwl.config.plugins;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.aspectj.lang.ProceedingJoinPoint;

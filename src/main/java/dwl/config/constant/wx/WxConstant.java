@@ -1,4 +1,4 @@
-package dwl.constant.wx;
+package dwl.config.constant.wx;
 
 /**
  * @author wenlong.ding

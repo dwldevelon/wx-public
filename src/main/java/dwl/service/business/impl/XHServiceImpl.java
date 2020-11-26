@@ -2,7 +2,7 @@ package dwl.service.business.impl;
 
 import dwl.model.entity.XiaoHuaDto;
 import dwl.model.jvhe.XiaoHuaResp;
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import dwl.service.business.XHService;
 import dwl.utils.CommonUtil;
 import lombok.extern.slf4j.Slf4j;

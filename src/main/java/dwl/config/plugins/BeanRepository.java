@@ -1,11 +1,11 @@
-package dwl.plugins;
+package dwl.config.plugins;
 
 import dwl.mapper.ProcessTreeMapper;
 import dwl.mapper.UserInfoMapper;
 import dwl.mapper.XiaoHuaMapper;
-import dwl.properties.JvHeProperties;
-import dwl.properties.WxProperties;
-import dwl.schedule.XHTask;
+import dwl.config.properties.JvHeProperties;
+import dwl.config.properties.WxProperties;
+import dwl.config.schedule.XHTask;
 import dwl.service.business.*;
 import dwl.service.db.ProcessTreeService;
 import dwl.service.db.UserInfoService;

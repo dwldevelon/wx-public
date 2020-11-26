@@ -1,10 +1,10 @@
-package dwl.schedule;
+package dwl.config.schedule;
 
-import dwl.constant.XHSort;
+import dwl.config.constant.XHSort;
 import dwl.model.entity.XiaoHuaDto;
 import dwl.model.jvhe.XiaoHuaReq;
 import dwl.model.jvhe.XiaoHuaResp;
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;

@@ -1,4 +1,4 @@
-package dwl.constant;
+package dwl.config.constant;
 
 import dwl.model.entity.UserInfoDto;
 

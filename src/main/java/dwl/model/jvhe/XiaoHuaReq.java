@@ -1,7 +1,7 @@
 package dwl.model.jvhe;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dwl.properties.JvHeProperties;
+import dwl.config.properties.JvHeProperties;
 import dwl.utils.ParseUtil;
 import dwl.utils.SpringContextUtil;
 import lombok.Data;

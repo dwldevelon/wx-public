@@ -1,10 +1,10 @@
 package dwl.service.business.impl;
 
-import dwl.constant.CommonConstant;
+import dwl.config.constant.CommonConstant;
 import dwl.model.entity.UserInfoDto;
 import dwl.model.enums.FeatureEnum;
 import dwl.model.enums.OperateEnum;
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import dwl.service.business.WxViewResolver;
 import dwl.utils.EnumUtil;
 import lombok.extern.slf4j.Slf4j;

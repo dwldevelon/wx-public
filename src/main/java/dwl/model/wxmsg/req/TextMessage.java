@@ -1,7 +1,7 @@
 package dwl.model.wxmsg.req;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import dwl.constant.wx.WxConstant;
+import dwl.config.constant.wx.WxConstant;
 import lombok.Data;
 
 /**

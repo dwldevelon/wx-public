@@ -1,6 +1,6 @@
 package dwl.controller;
 
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,10 +1,10 @@
 package dwl.service.business.command;
 
-import dwl.constant.CommonConstant;
+import dwl.config.constant.CommonConstant;
 import dwl.model.entity.ProcessTreeDto;
 import dwl.model.entity.UserInfoDto;
 import dwl.model.enums.OperateEnum;
-import dwl.plugins.BeanRepository;
+import dwl.config.plugins.BeanRepository;
 import dwl.service.business.Command;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

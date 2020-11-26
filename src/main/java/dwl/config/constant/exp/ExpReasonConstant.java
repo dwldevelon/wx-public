@@ -1,4 +1,4 @@
-package dwl.constant.exp;
+package dwl.config.constant.exp;
 
 /**
  * @author wenlong.ding

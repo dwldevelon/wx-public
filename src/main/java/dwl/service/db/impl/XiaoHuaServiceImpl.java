@@ -72,6 +72,7 @@ public class XiaoHuaServiceImpl extends ServiceImpl<XiaoHuaMapper, XiaoHuaDto> i
         page.setSize(1);
         QueryWrapper<XiaoHuaDto> qw = new QueryWrapper<>();
         qw.lt("id",id);
+        qw.orderByDesc("id");
         IPage<XiaoHuaDto> result = page(page, qw);
         return result.getTotal() > 0 ? result.getRecords().get(0) : findLast();
     }
