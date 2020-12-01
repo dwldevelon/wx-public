@@ -48,7 +48,12 @@ public class XHServiceImpl extends BeanRepository implements XHService {
                 .collect(Collectors.toList());
 
         if (xiaoHuaDtoList.size() > 0) {
-            xiaoHuaService.saveBatch(xiaoHuaDtoList);
+            try {
+                xiaoHuaService.saveBatch(xiaoHuaDtoList);
+            }catch (Exception e){
+                log.error("保存笑话数据异常:parameters={}",xiaoHuaDtoList,e);
+
+            }
         }
 
     }

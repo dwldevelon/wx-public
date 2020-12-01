@@ -38,7 +38,7 @@ public class CtxTest extends BaseTest {
     public void commandTest(){
 //        internalTest("cd 0");
 //        internalTest("cd 1");
-        internalTest("1");
+        internalTest("2");
 //        internalTest("cd 3");
     }
 
