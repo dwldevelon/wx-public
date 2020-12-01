@@ -1,10 +1,8 @@
 package dwl.controller;
 
 import dwl.config.constant.CommonConstant;
-import dwl.model.entity.UserInfoDto;
-import dwl.model.enums.XiaoHuaFeatureEnum;
 import dwl.config.plugins.BeanRepository;
-import dwl.utils.SpringContextUtil;
+import dwl.model.entity.UserInfoDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +31,8 @@ public class MockController extends BeanRepository {
         UserInfoDto userInfoDto = userInfoMapper.selectById(1);
         log.info("{}",userInfoDto);
         CommonConstant.GLOBAL_USER_INFO.set(userInfoDto);
-        return
-        SpringContextUtil.getBean(XiaoHuaFeatureEnum.NEXT.getCommand()).exec("1");
+        return null;
+//        SpringContextUtil.getBean(XiaoHuaFeatureEnum.NEXT.getCommand()).exec("1");
     }
 
 
@@ -43,8 +41,8 @@ public class MockController extends BeanRepository {
         UserInfoDto userInfoDto = userInfoMapper.selectById(1);
         log.info("{}",userInfoDto);
         CommonConstant.GLOBAL_USER_INFO.set(userInfoDto);
-        return
-        SpringContextUtil.getBean(XiaoHuaFeatureEnum.PREVIOUS.getCommand()).exec("1");
+        return null;
+//        SpringContextUtil.getBean(XiaoHuaFeatureEnum.PREVIOUS.getCommand()).exec("1");
     }
 
 

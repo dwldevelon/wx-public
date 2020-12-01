@@ -11,6 +11,7 @@ import org.dom4j.Element;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.SAXReader;
 import org.dom4j.io.XMLWriter;
+import org.springframework.util.CollectionUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -27,7 +28,7 @@ public class ParseUtil {
     }
 
 
-    public static <T> T mapToBean(Map<String, String> map,Class<T> clazz){
+    public static <T> T mapToBean(Map<String, Object> map,Class<T> clazz){
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(objectMapper.writeValueAsString(map),clazz);
@@ -37,43 +38,52 @@ public class ParseUtil {
         }
     }
 
-    public static Map<String,String> beanToMap(Object obj){
+    public static Map<String,Object> beanToMap(Object obj){
         if(Objects.isNull(obj)){
             return Collections.emptyMap();
         }
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            MapLikeType mapLikeType = objectMapper.getTypeFactory().constructMapLikeType(Map.class, String.class, String.class);
+            MapLikeType mapLikeType = objectMapper.getTypeFactory().constructMapLikeType(Map.class, String.class, Object.class);
             return objectMapper.readValue(objectMapper.writeValueAsString(obj),mapLikeType);
         }catch (Exception e){
             return Collections.emptyMap();
         }
     }
 
-    public static Map<String, String> xmlToMap(String xml) {
-        Map<String, String> result = new HashMap<>();
+    public static Map<String, Object> xmlToMap(String xml) {
         SAXReader reader = new SAXReader();
         try {
             Document document = reader.read(new ByteArrayInputStream(xml.getBytes()));
             Element rootElement = document.getRootElement();
-            Iterator<Element> propertiesElementIterator = rootElement.elementIterator();
-            while (propertiesElementIterator.hasNext()) {
-                Element propertiesElement = propertiesElementIterator.next();
-                result.put(propertiesElement.getName(),propertiesElement.getTextTrim());
-            }
+            Map<String, Object> internal = internal(rootElement);
+            return (Map<String,Object>)internal.get(WxConstant.XML_ROOT);
         } catch (DocumentException e) {
             log.error("解析xml失败:{}",xml,e);
         }
-        return result;
+        return null;
     }
 
-    public static String mapToXml(Map<String,String> map){
+    private static Map<String,Object> internal(Element element){
+        Map<String,Object> map = new HashMap<>();
+        List<Element> elements = element.elements();
+        if(CollectionUtils.isEmpty(elements)){
+            map.put(element.getName(),element.getTextTrim());
+        }else {
+            Map<String, Object> result = elements.stream().map(ParseUtil::internal).reduce(new HashMap<>(), (e1, e2) -> {
+                // todo 同一级别相同html标签处理
+                e1.putAll(e2);
+                return e1;
+            });
+            map.put(element.getName(),result);
+        }
+        return map;
+    }
+
+    public static String mapToXml(Map<String,Object> map){
         Document document = DocumentHelper.createDocument();
         Element rootElement = document.addElement(WxConstant.XML_ROOT);
-        map.forEach((k,v)->{
-            Element element = rootElement.addElement(k);
-            element.addText(v);
-        });
+        mapToXml(map,rootElement);
 
         OutputFormat outputFormat = new OutputFormat();
         outputFormat.setEncoding("UTF-8");
@@ -88,6 +98,25 @@ public class ParseUtil {
         } catch (IOException e) {
             log.error("转化为xml error，map={}",map);
             return "";
+        }
+    }
+
+    private static void mapToXml(Object obj ,Element element){
+        if(obj instanceof List){
+            String name = element.getName();
+            List<?> l = (List) obj;
+            for (int i = 0; i < l.size(); i++) {
+                if(i > 0){
+                    mapToXml( l.get(i),element.getParent().addElement(name));
+                }else {
+                    mapToXml(l.get(i),element);
+                }
+            }
+        }else if(obj instanceof Map){
+            Map<?,?> m = (Map)obj;
+            m.forEach((k,v)-> mapToXml(v,element.addElement(String.valueOf(k))));
+        }else {
+            element.addText(String.valueOf(obj));
         }
     }
 

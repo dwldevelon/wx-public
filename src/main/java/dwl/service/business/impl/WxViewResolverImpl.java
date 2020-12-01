@@ -1,16 +1,9 @@
 package dwl.service.business.impl;
 
-import dwl.config.constant.CommonConstant;
-import dwl.model.entity.UserInfoDto;
-import dwl.model.enums.FeatureEnum;
-import dwl.model.enums.OperateEnum;
 import dwl.config.plugins.BeanRepository;
 import dwl.service.business.WxViewResolver;
-import dwl.utils.EnumUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.Objects;
 
 /**
  * @author wenlong.ding
@@ -19,8 +12,12 @@ import java.util.Objects;
 @Service
 @Slf4j
 public class WxViewResolverImpl extends BeanRepository implements WxViewResolver {
-
     @Override
+    public String resolve(String content) {
+        return null;
+    }
+
+   /* @Override
     public String resolve(String content) {
         OperateEnum operateEnum = OperateEnum.findByContent(content);
         if(Objects.nonNull(operateEnum)){
@@ -29,7 +26,7 @@ public class WxViewResolverImpl extends BeanRepository implements WxViewResolver
         UserInfoDto userInfoDto = CommonConstant.GLOBAL_USER_INFO.get();
         if(Objects.isNull(userInfoDto)){
             log.warn("用户不存在");
-            return resolve("cd 0");
+            return resolve(OperateEnum.DEFAULT_OPERATE);
         }
         Integer activeFeature = userInfoDto.getActiveFeatureCode();
         FeatureEnum featureEnum = EnumUtil.findOne(FeatureEnum.class, activeFeature);
@@ -38,7 +35,7 @@ public class WxViewResolverImpl extends BeanRepository implements WxViewResolver
             return ctx.getBean(featureEnum.getClazz()).exec(content);
         }
         log.warn("不能识别的content:{}",content);
-        return resolve("cd 0");
-    }
+        return resolve(OperateEnum.DEFAULT_OPERATE);
+    }*/
 
 }

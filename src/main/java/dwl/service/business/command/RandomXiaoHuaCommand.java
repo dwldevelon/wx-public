@@ -1,10 +1,12 @@
 package dwl.service.business.command;
 
 import dwl.config.constant.CommonConstant;
+import dwl.config.plugins.BeanRepository;
+import dwl.model.WXContext;
 import dwl.model.entity.UserInfoDto;
 import dwl.model.entity.XiaoHuaDto;
-import dwl.config.plugins.BeanRepository;
-import dwl.service.business.Command;
+import dwl.model.wxmsg.resp.WXTextRespMessage;
+import dwl.service.business.WXCommand;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -14,20 +16,18 @@ import java.util.Objects;
  * @date 2020/11/25 15:38
  */
 @Service
-public class RandomXiaoHuaCommand extends BeanRepository implements Command {
+public class RandomXiaoHuaCommand extends BeanRepository implements WXCommand {
+
     @Override
-    public String exec(String content) {
+    public void exec(WXContext context) {
 
         XiaoHuaDto xiaoHuaDto = xiaoHuaMapper.findOneByRandom();
 
         UserInfoDto userInfoDto = CommonConstant.GLOBAL_USER_INFO.get();
-        if(Objects.isNull(userInfoDto)){
-            return xiaoHuaDto.getContent();
-        }else {
-            // 随机笑话不会重置游标
-//            userInfoDto.setCurrXiaoHuaId(xiaoHuaDto.getId());
-//            userInfoService.updateById(userInfoDto);
-            return headAndTailWrapper.wrapper(userInfoDto.getActiveFeatureCode(),xiaoHuaDto.getContent());
-        }
+
+        context.castOrCrate(WXTextRespMessage.class).setContent(
+                Objects.isNull(userInfoDto) ? xiaoHuaDto.getContent() :
+                        headAndTailWrapper.wrapper(userInfoDto.getActiveFeatureCode(), xiaoHuaDto.getContent())
+        );
     }
 }

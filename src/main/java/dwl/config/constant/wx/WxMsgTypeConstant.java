@@ -9,5 +9,9 @@ public interface WxMsgTypeConstant {
      * 文本消息
      */
     String TEXT = "text";
+    /**
+     * 图文消息
+     */
+    String NEWS = "news";
 
 }

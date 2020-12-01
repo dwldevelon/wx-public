@@ -5,5 +5,5 @@ package dwl.service.business;
  * @date 2020/11/25 15:35
  */
 public interface CommandSupplier {
-    Class<? extends Command> getCommand();
+    Class<? extends WXCommand> getCommand();
 }

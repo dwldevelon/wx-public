@@ -1,11 +1,13 @@
 package dwl.service.business.command;
 
 import dwl.config.constant.CommonConstant;
+import dwl.config.plugins.BeanRepository;
+import dwl.model.WXContext;
 import dwl.model.entity.ProcessTreeDto;
 import dwl.model.entity.UserInfoDto;
-import dwl.model.enums.OperateEnum;
-import dwl.config.plugins.BeanRepository;
-import dwl.service.business.Command;
+import dwl.model.wxmsg.req.WXTextReqMessage;
+import dwl.model.wxmsg.resp.WXTextRespMessage;
+import dwl.service.business.WXCommand;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -19,12 +21,13 @@ import java.util.stream.Collectors;
  */
 @Service
 @Slf4j
-public class CdCommand extends BeanRepository implements Command {
+public class CdCommand extends BeanRepository implements WXCommand {
 
     @Override
-    public String exec(String content) {
-        Assert.notNull(content,"cd命名内容不能为null");
-        Assert.isTrue(content.startsWith(OperateEnum.CD.getCmd()),"命令不对");
+    public void exec(WXContext context) {
+        Assert.notNull(context.getReq(),"请求消息不能为null");
+        WXTextReqMessage wxTextReqMessage = context.checkReq(WXTextReqMessage.class);
+        String content = wxTextReqMessage.getContent();
         content = content.substring(2).trim();
         int code =  CommonConstant.ROOT_PROCESS_TREE_CODE; ;
         try {
@@ -48,6 +51,8 @@ public class CdCommand extends BeanRepository implements Command {
                 .stream()
                 .map(e->String.format("-%s[%s]",e.getCode(),e.getName()))
                 .collect(Collectors.joining(CommonConstant.RN));
-        return headAndTailWrapper.wrapper(code,result);
+
+        String wrapper = headAndTailWrapper.wrapper(code, result);
+        context.castOrCrate(WXTextRespMessage.class).setContent(wrapper);
     }
 }

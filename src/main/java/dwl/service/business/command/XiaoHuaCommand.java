@@ -1,8 +1,10 @@
 package dwl.service.business.command;
 
-import dwl.model.enums.XiaoHuaFeatureEnum;
 import dwl.config.plugins.BeanRepository;
-import dwl.service.business.Command;
+import dwl.model.WXContext;
+import dwl.model.enums.XiaoHuaFeatureEnum;
+import dwl.model.wxmsg.req.WXTextReqMessage;
+import dwl.service.business.WXCommand;
 import dwl.utils.EnumUtil;
 import dwl.utils.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -16,12 +18,15 @@ import java.util.Objects;
  */
 @Service
 @Slf4j
-public class XiaoHuaCommand extends BeanRepository implements Command {
+public class XiaoHuaCommand extends BeanRepository implements WXCommand {
+
+
     @Override
-    public String exec(String content) {
+    public void exec(WXContext context) {
+        WXTextReqMessage wxTextReqMessage = context.checkReq(WXTextReqMessage.class);
         Integer code = null;
         try{
-            code = Integer.valueOf(content);
+            code = Integer.valueOf(wxTextReqMessage.getContent());
         }catch (Exception e){
             log.warn("code解析失败，使用默认值");
         }
@@ -29,7 +34,6 @@ public class XiaoHuaCommand extends BeanRepository implements Command {
             code = XiaoHuaFeatureEnum.RANDOM.getCode();
         }
         XiaoHuaFeatureEnum xhFeature = EnumUtil.findOne(XiaoHuaFeatureEnum.class,code,XiaoHuaFeatureEnum.RANDOM);
-        return SpringContextUtil.getBean(xhFeature.getCommand()).exec(content);
+        SpringContextUtil.getBean(xhFeature.getCommand()).exec(context);
     }
-
 }

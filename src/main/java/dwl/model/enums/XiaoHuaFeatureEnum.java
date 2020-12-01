@@ -1,7 +1,7 @@
 package dwl.model.enums;
 
-import dwl.service.business.Command;
 import dwl.service.business.CommandSupplier;
+import dwl.service.business.WXCommand;
 import dwl.service.business.command.NextXiaoHuaCommand;
 import dwl.service.business.command.PreviousXiaoHuaCommand;
 import dwl.service.business.command.RandomXiaoHuaCommand;
@@ -23,6 +23,6 @@ public enum  XiaoHuaFeatureEnum implements SuperEnum, CommandSupplier {
 
     private int code;
     private String desc;
-    private Class<? extends Command> command;
+    private Class<? extends WXCommand> command;
 
 }

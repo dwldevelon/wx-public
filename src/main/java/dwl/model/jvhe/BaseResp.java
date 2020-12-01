@@ -1,10 +1,10 @@
 package dwl.model.jvhe;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import dwl.model.enums.JvHeRespTypeEnum;
+import dwl.utils.EnumUtil;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-
-import java.util.Objects;
 
 /**
  * 聚合基础返回接口
@@ -27,11 +27,21 @@ public class BaseResp<T> {
     private String resultCode;
 
     public boolean success(){
-        boolean success = Objects.equals(error_code,"0");
-        if(!success){
-            log.warn("笑话请求结果异常:error_code={},reason={}",error_code,reason);
+        JvHeRespTypeEnum jvHeRespTypeEnum = result();
+        switch (jvHeRespTypeEnum) {
+            case SUCCESS:
+                return true;
+            case LIMIT_EXCEEDED:
+                return false;
+            case UN_KNOW:
+                log.warn("聚合数据请求结果异常:error_code={},reason={}", error_code, reason);
+            default:
+                return false;
         }
-        return success;
+    }
+
+    public JvHeRespTypeEnum result() {
+        return EnumUtil.findOne(JvHeRespTypeEnum.class, JvHeRespTypeEnum::getErrorCode, error_code, JvHeRespTypeEnum.UN_KNOW);
     }
 
 }

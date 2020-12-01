@@ -4,8 +4,8 @@ package dwl.service.business;
  * @author wenlong.ding
  * @date 2020/11/17 11:29
  */
-public interface Command {
+public interface Command<IN,OUT> {
 
-    String exec(String content);
+    void exec(IN in ,OUT out);
 
 }

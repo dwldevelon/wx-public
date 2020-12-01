@@ -1,5 +1,6 @@
 package dwl.utils;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.Assert;
 
 import java.util.*;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
  * @author wenlong.ding
  * @date 2020/9/21 15:05
  */
+@Slf4j
 public class CommonUtil {
     private CommonUtil(){}
 
@@ -38,6 +40,32 @@ public class CommonUtil {
         Assert.notNull(collector,"collector must not null");
         return associateList(source, f, resultF).stream().collect(collector);
     }
+/*
+    public static <T extends WXBaseResp> T castOrCrate(WXBaseResp resp, Class<T> mClass){
+        boolean assignableFrom = mClass .isAssignableFrom(resp.getClass());
+        if(assignableFrom){
+            return (T) resp;
+        }else {
+            T t;
+            try {
+                t = mClass.newInstance();
+            } catch (InstantiationException | IllegalAccessException e) {
+                log.error("{}",e.getMessage());
+                throw new RuntimeException("系统异常",e);
+            }
+            BeanUtils.copyProperties(resp,t);
+            return t;
+        }
+    }
+
+    public static <T extends WXBaseReq> T checkReq(WXBaseReq wxBaseReq,Class<T> tClass){
+        Assert.notNull(wxBaseReq,"请求消息不能为null");
+        boolean assignableFrom = tClass .isAssignableFrom(wxBaseReq.getClass());
+        if(!assignableFrom){
+            throw new RuntimeException("not support req");
+        }
+        return  (T) wxBaseReq;
+    }*/
 
 
 }

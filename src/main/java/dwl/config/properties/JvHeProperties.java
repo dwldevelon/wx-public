@@ -24,4 +24,10 @@ public class JvHeProperties {
      * 笑话大全key
      */
     private String xhKey;
+
+    private String newsPath;
+    /**
+     * 头条key
+     */
+    private String newsKey;
 }

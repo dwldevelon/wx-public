@@ -6,6 +6,7 @@ import dwl.utils.ParseUtil;
 import dwl.utils.SpringContextUtil;
 import lombok.Data;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -40,6 +41,8 @@ public class XiaoHuaReq {
     }
 
     public Map<String,String> toMap(){
-        return ParseUtil.beanToMap(this);
+        Map<String,String> map = new HashMap<>();
+        ParseUtil.beanToMap(this).forEach((k,v)->map.put(k,String.valueOf(v)));
+        return map;
     }
 }

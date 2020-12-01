@@ -1,6 +1,6 @@
 package dwl.model.enums;
 
-import dwl.service.business.Command;
+import dwl.service.business.WXCommand;
 import dwl.service.business.command.CdCommand;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,11 +19,13 @@ public enum  OperateEnum {
     CD(1,"cd","切换流程操作", CdCommand.class);
     ;
 
+    public static final String DEFAULT_OPERATE = "cd 0";
+
     private int code;
     // 命令
     private String cmd;
     private String desc;
-    private Class<? extends Command> execImpl;
+    private Class<? extends WXCommand> execImpl;
 
     public static OperateEnum findByContent(String content){
         return Objects.isNull(content) ? null :

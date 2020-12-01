@@ -1,11 +1,13 @@
 package dwl.service.business.command;
 
 import dwl.config.constant.CommonConstant;
+import dwl.config.plugins.BeanRepository;
+import dwl.model.WXContext;
 import dwl.model.entity.UserInfoDto;
 import dwl.model.entity.XiaoHuaDto;
 import dwl.model.enums.XiaoHuaFeatureEnum;
-import dwl.config.plugins.BeanRepository;
-import dwl.service.business.Command;
+import dwl.model.wxmsg.resp.WXTextRespMessage;
+import dwl.service.business.WXCommand;
 import dwl.utils.SpringContextUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,16 +20,19 @@ import java.util.Objects;
  */
 @Service
 @Slf4j
-public class NextXiaoHuaCommand extends BeanRepository implements Command {
+public class NextXiaoHuaCommand extends BeanRepository implements WXCommand {
+
     @Override
-    public String exec(String content) {
+    public void exec(WXContext context) {
+        //        WXTextReqMessage wxTextReqMessage = CommonUtil.checkReq(wxBaseReq, WXTextReqMessage.class);
+
         UserInfoDto userInfoDto = CommonConstant.GLOBAL_USER_INFO.get();
         if(Objects.isNull(userInfoDto)){
-            return SpringContextUtil.getBean(XiaoHuaFeatureEnum.RANDOM.getCommand()).exec(content);
+            SpringContextUtil.getBean(XiaoHuaFeatureEnum.RANDOM.getCommand()).exec(context);
         }
         XiaoHuaDto next = xiaoHuaService.findNext(userInfoDto.getCurrXiaoHuaId());
         userInfoDto.setCurrXiaoHuaId(next.getId());
         userInfoService.updateById(userInfoDto);
-        return headAndTailWrapper.wrapper(userInfoDto.getActiveFeatureCode(),next.getContent());
+        context.castOrCrate(WXTextRespMessage.class).setContent(headAndTailWrapper.wrapper(userInfoDto.getActiveFeatureCode(),next.getContent()));
     }
 }

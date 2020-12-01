@@ -1,5 +1,6 @@
 package dwl.config.plugins;
 
+import dwl.mapper.NewsMapper;
 import dwl.mapper.ProcessTreeMapper;
 import dwl.mapper.UserInfoMapper;
 import dwl.mapper.XiaoHuaMapper;
@@ -7,10 +8,12 @@ import dwl.config.properties.JvHeProperties;
 import dwl.config.properties.WxProperties;
 import dwl.config.schedule.XHTask;
 import dwl.service.business.*;
+import dwl.service.db.NewsService;
 import dwl.service.db.ProcessTreeService;
 import dwl.service.db.UserInfoService;
 import dwl.service.db.XiaoHuaService;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.io.ResourceLoader;
 
 import javax.annotation.Resource;
 
@@ -25,6 +28,8 @@ public abstract class BeanRepository
     // ------------------ spring boot ---------------------
     @Resource
     protected ApplicationContext ctx;
+    @Resource
+    protected ResourceLoader resourceLoader;
 
 
 
@@ -43,7 +48,8 @@ public abstract class BeanRepository
     protected UserInfoMapper userInfoMapper;
     @Resource
     protected ProcessTreeMapper processTreeMapper;
-
+    @Resource
+    protected NewsMapper newsMapper;
 
 
     // --------------------- simple service --------------
@@ -53,7 +59,8 @@ public abstract class BeanRepository
     protected UserInfoService userInfoService;
     @Resource
     protected ProcessTreeService processTreeService;
-
+    @Resource
+    protected NewsService newsService;
 
 
     // -------------------- business service ------------

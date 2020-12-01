@@ -1,6 +1,6 @@
 package dwl.model.enums;
 
-import dwl.service.business.Command;
+import dwl.service.business.WXCommand;
 import dwl.service.business.command.XiaoHuaCommand;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -19,5 +19,5 @@ public enum FeatureEnum implements SuperEnum {
 
     private int code;
     private String desc;
-    private Class<? extends Command> clazz;
+    private Class<? extends WXCommand> clazz;
 }
