@@ -1,5 +1,6 @@
 package dwl;
 
+import dwl.model.entity.XiaoHuaDto;
 import dwl.utils.ParseUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
@@ -36,9 +37,16 @@ public class CtxTest extends BaseTest {
 
     @Test
     public void commandTest(){
+
+        XiaoHuaDto xiaoHuaDto = new XiaoHuaDto();
+        xiaoHuaDto.setHashId("D9803728628EB1F6AAECE1648E");
+        xiaoHuaDto.setContent("test");
+        xiaoHuaDto.setUnixTime(1234L);
+        xiaoHuaDto.setUpdateTime("12345");
+        System.out.println(xiaoHuaDto);
 //        internalTest("cd 0");
 //        internalTest("cd 1");
-        internalTest("2");
+//        internalTest("2");
 //        internalTest("cd 3");
     }
 

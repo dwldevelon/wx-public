@@ -24,7 +24,7 @@ public class UserInfoDto {
      * 激活
      */
     @TableField(value = "active_feature_code",updateStrategy = FieldStrategy.IGNORED)
-    private Integer activeFeatureCode;
+    private Long activeFeatureCode;
 
     /**
      * 当前笑话id;

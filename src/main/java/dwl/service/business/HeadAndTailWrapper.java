@@ -6,6 +6,6 @@ package dwl.service.business;
  */
 public interface HeadAndTailWrapper {
 
-    String wrapper(Integer code,String content);
+    String wrapper(Long code,String content);
 
 }

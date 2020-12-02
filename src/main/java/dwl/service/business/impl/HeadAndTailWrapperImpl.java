@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class HeadAndTailWrapperImpl extends BeanRepository implements HeadAndTailWrapper {
     @Override
-    public String wrapper(Integer code, String content) {
+    public String wrapper(Long code, String content) {
         if (Objects.isNull(code)) {
             return content;
         }

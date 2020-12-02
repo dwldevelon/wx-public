@@ -17,14 +17,22 @@ import java.util.*;
 public class ProcessTreeServiceImpl extends ServiceImpl<ProcessTreeMapper, ProcessTreeDto> implements ProcessTreeService {
 
     @Override
-    public ProcessTreeDto findByCode(int code) {
+    public ProcessTreeDto findByCode(long code) {
         QueryWrapper<ProcessTreeDto> pw = new QueryWrapper<>();
         pw.eq("code",code);
         return getOne(pw);
     }
 
     @Override
-    public List<ProcessTreeDto> findToRootByCode(int code) {
+    public ProcessTreeDto findByParentIdAndCode(Long parentId, Long code) {
+        QueryWrapper<ProcessTreeDto> pw = new QueryWrapper<>();
+        pw.eq("code",code);
+        pw.eq("parent_id",parentId);
+        return getOne(pw);
+    }
+
+    @Override
+    public List<ProcessTreeDto> findToRootByCode(long code) {
         List<ProcessTreeDto> result = new ArrayList<>();
         ProcessTreeDto ptd = findByCode(code);
         if(Objects.isNull(ptd)){

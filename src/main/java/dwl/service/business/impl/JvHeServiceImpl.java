@@ -61,8 +61,6 @@ public class JvHeServiceImpl extends BeanRepository implements JvHeService{
         req.setType(newsType.getJvHeCode());
 
         Map<String,String> paramMap = req.toMap();
-        paramMap.put("key",jvHeProperties.getNewsKey());
-        paramMap.put("type","");
         String param = paramMap.keySet().stream().map(e -> e + "=" + paramMap.get(e)).collect(Collectors.joining("&"));
         url += param;
         String resp = HttpUtil.get(url, String.class);

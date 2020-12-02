@@ -101,9 +101,11 @@ public class MsgGatewayImpl extends BeanRepository implements MsgGateway {
             return;
         }
         // 功能命令
-        FeatureEnum featureEnum = EnumUtil.findOne(FeatureEnum.class, userInfoDto.getActiveFeatureCode());
+        FeatureEnum featureEnum = EnumUtil.findOne(FeatureEnum.class, userInfoDto.getActiveFeatureCode().intValue());
         if(Objects.nonNull(featureEnum)){
             ctx.getBean(featureEnum.getClazz()).exec(context);
+        }else {
+
         }
 
     }

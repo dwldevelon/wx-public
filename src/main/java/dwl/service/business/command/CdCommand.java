@@ -29,19 +29,28 @@ public class CdCommand extends BeanRepository implements WXCommand {
         WXTextReqMessage wxTextReqMessage = context.checkReq(WXTextReqMessage.class);
         String content = wxTextReqMessage.getContent();
         content = content.substring(2).trim();
-        int code =  CommonConstant.ROOT_PROCESS_TREE_CODE; ;
+        long code =  CommonConstant.ROOT_PROCESS_TREE_CODE; ;
         try {
             code = Integer.parseInt(content);
         }catch (Exception e){
             log.warn("无法解析的cd命令参数:"+content);
         }
-        ProcessTreeDto ptTree = processTreeService.findByCode(code);
-        if(Objects.isNull(ptTree)){
-            code = CommonConstant.ROOT_PROCESS_TREE_CODE;
-            ptTree = processTreeService.findByCode(code);
-        }
 
         UserInfoDto userInfoDto = CommonConstant.GLOBAL_USER_INFO.get();
+
+        Long parentId = 0L;
+        if(Objects.nonNull(userInfoDto)){
+            parentId = userInfoDto.getActiveFeatureCode();
+        }
+
+        ProcessTreeDto ptTree = processTreeService.findByParentIdAndCode(parentId, code);
+        if(Objects.isNull(ptTree)){
+            ptTree = processTreeService.getById(parentId);
+        }
+        if(Objects.isNull(ptTree)){
+            ptTree = processTreeService.getById(0L);
+        }
+
         if(Objects.nonNull(userInfoDto)) {
             userInfoDto.setActiveFeatureCode(ptTree.getFeatureCode());
             userInfoMapper.updateById(userInfoDto);
@@ -52,7 +61,7 @@ public class CdCommand extends BeanRepository implements WXCommand {
                 .map(e->String.format("-%s[%s]",e.getCode(),e.getName()))
                 .collect(Collectors.joining(CommonConstant.RN));
 
-        String wrapper = headAndTailWrapper.wrapper(code, result);
+        String wrapper = headAndTailWrapper.wrapper((long) code, result);
         context.castOrCrate(WXTextRespMessage.class).setContent(wrapper);
     }
 }

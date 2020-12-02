@@ -15,7 +15,7 @@ public class ProcessTreeDto {
     /**
      * 流程码
      */
-    private Integer code;
+    private Long code;
     /**
      * 流程名称
      */
@@ -25,7 +25,7 @@ public class ProcessTreeDto {
      */
     private String description;
     /**
-     * 功能
+     * 功能码
      */
-    private Integer featureCode;
+    private Long featureCode;
 }

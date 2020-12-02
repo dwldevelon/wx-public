@@ -74,9 +74,4 @@ public class NewsCommand extends BeanRepository implements WXCommand {
         wxNewsRespMessage.setArticleCount(String.valueOf(1));
         wxNewsRespMessage.setArticles(articles);
     }
-
-    /*@Override
-    public String exec(String content) {
-
-    }*/
 }

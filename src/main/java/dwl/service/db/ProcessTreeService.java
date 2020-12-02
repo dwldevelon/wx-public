@@ -11,12 +11,14 @@ import java.util.List;
  */
 public interface ProcessTreeService extends IService<ProcessTreeDto> {
 
-    ProcessTreeDto findByCode(int code);
+    ProcessTreeDto findByCode(long code);
+
+    ProcessTreeDto findByParentIdAndCode(Long parentId,Long code);
 
     /**
      * 查询所有节点，直到到根节点，默认应该以层级排序
      */
-    List<ProcessTreeDto> findToRootByCode(int code);
+    List<ProcessTreeDto> findToRootByCode(long code);
 
     List<ProcessTreeDto> findByParentId(Long parentIds);
 
